@@ -1,0 +1,44 @@
+:root {
+    --bg: #ffffff;
+    --fg: #111111;
+    --muted: #555;
+    --border: #e5e7eb;
+    --link: #0b5fff;
+    --maxw: 72rem;
+  }
+  
+  * { box-sizing: border-box; }
+  
+  html { scroll-behavior: smooth; }
+  
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--fg);
+    background: var(--bg);
+    line-height: 1.6;
+  }
+  
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  
+  main {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+  }
+  
+  section { margin-top: 3rem; }
+  
+  h1, h2, h3 {
+    line-height: 1.25;
+    margin-bottom: 0.5rem;
+  }
+  
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2rem 0;
+  }
+  

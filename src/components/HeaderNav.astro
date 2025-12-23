@@ -1,0 +1,53 @@
+---
+const path = Astro.url.pathname;
+const link = (href) => path === href ? "active" : "";
+---
+
+<header>
+  <nav>
+    <div class="wrap">
+      <a href="/" class="brand">Selva Nadarajah</a>
+      <div class="links">
+        <a href="/" class={link("/")}>Home</a>
+        <a href="/research" class={link("/research")}>Research</a>
+        <a href="/teaching" class={link("/teaching")}>Teaching</a>
+        <a href="/students" class={link("/students")}>Students</a>
+        <a href="/cv" class={link("/cv")}>CV</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<style>
+header {
+  position: sticky;
+  top: 0;
+  background: white;
+  border-bottom: 1px solid var(--border);
+  z-index: 10;
+}
+
+nav .wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.links a {
+  margin-left: 1rem;
+  color: var(--muted);
+}
+
+.links a.active {
+  color: var(--fg);
+  font-weight: 500;
+}
+</style>
