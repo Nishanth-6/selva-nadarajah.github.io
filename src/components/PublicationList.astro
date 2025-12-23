@@ -1,0 +1,83 @@
+---
+type PubLink = { label: string; url: string };
+type Pub = {
+  id: string;
+  year: number;
+  title: string;
+  authors: string;
+  venue?: string;
+  links?: PubLink[];
+  tags?: string[];
+  note?: string;
+  selected?: boolean;
+};
+
+const { items, selectedOnly = false } = Astro.props as {
+  items: Pub[];
+  selectedOnly?: boolean;
+};
+
+const filtered = selectedOnly ? items.filter((p) => p.selected) : items;
+const byYear = new Map<number, Pub[]>();
+
+for (const p of filtered) {
+  if (!byYear.has(p.year)) byYear.set(p.year, []);
+  byYear.get(p.year)!.push(p);
+}
+
+const years = Array.from(byYear.keys()).sort((a, b) => b - a);
+---
+
+{years.length === 0 ? (
+  <p>No publications yet.</p>
+) : (
+  years.map((y) => (
+    <section>
+      <h2>{y}</h2>
+      <ol class="list">
+        {byYear.get(y)!.map((p) => (
+          <li>
+            <div class="title">{p.title}</div>
+            <div class="meta">
+              <span>{p.authors}</span>
+              {p.venue ? <span class="sep">·</span> : null}
+              {p.venue ? <span>{p.venue}</span> : null}
+            </div>
+            {p.links?.length ? (
+              <div class="links">
+                {p.links.map((l) => (
+                  <a href={l.url} target="_blank" rel="noreferrer">{l.label}</a>
+                ))}
+              </div>
+            ) : null}
+            {p.note ? <div class="note">{p.note}</div> : null}
+          </li>
+        ))}
+      </ol>
+    </section>
+  ))
+)}
+
+<style>
+.list {
+  padding-left: 1.25rem;
+}
+.title {
+  font-weight: 600;
+}
+.meta {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.sep {
+  margin: 0 0.35rem;
+}
+.links a {
+  margin-right: 0.75rem;
+  font-size: 0.95rem;
+}
+.note {
+  color: var(--muted);
+  margin-top: 0.25rem;
+}
+</style>

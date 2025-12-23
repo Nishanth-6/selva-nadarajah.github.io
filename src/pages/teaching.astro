@@ -2,11 +2,55 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HeaderNav from "../components/HeaderNav.astro";
 import Footer from "../components/Footer.astro";
+import Section from "../components/Section.astro";
+import Card from "../components/Card.astro";
+import { getCollection } from "astro:content";
+
+const entries = await getCollection("teaching");
+const data = entries[0]?.data as any;
+const terms = data?.terms ?? [];
 ---
 
-<BaseLayout title="Selva Nadarajah">
+<BaseLayout title="Teaching - Selva Nadarajah" description="Teaching and courses.">
   <HeaderNav slot="header" />
-  <h1>Selva Nadarajah</h1>
-  <p>Home page placeholder.</p>
+  <h1>Teaching</h1>
+
+  {terms.length === 0 ? (
+    <p>No teaching data yet.</p>
+  ) : (
+    terms.map((t: any) => (
+      <Section title={t.term}>
+        <div class="grid">
+          {t.items.map((c: any) => (
+            <Card title={c.course}>
+              {c.title ? <p>{c.title}</p> : null}
+              {c.institution ? <p>{c.institution}</p> : null}
+              {c.role ? <p>{c.role}</p> : null}
+              {c.notes?.length ? (
+                <ul>
+                  {c.notes.map((n: string) => <li>{n}</li>)}
+                </ul>
+              ) : null}
+              {c.url ? <p><a href={c.url}>Course link</a></p> : null}
+            </Card>
+          ))}
+        </div>
+      </Section>
+    ))
+  )}
+
   <Footer slot="footer" />
 </BaseLayout>
+
+<style>
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
+}
+@media (min-width: 800px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+</style>

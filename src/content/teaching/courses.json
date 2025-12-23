@@ -1,0 +1,17 @@
+{
+    "terms": [
+      {
+        "term": "Recent",
+        "items": [
+          {
+            "course": "Course Code",
+            "title": "Course title (replace)",
+            "institution": "Institution (replace)",
+            "role": "Instructor / TA (replace)",
+            "notes": ["Replace these bullets with the content from teaching.html"]
+          }
+        ]
+      }
+    ]
+  }
+  

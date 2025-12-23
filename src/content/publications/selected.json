@@ -1,0 +1,16 @@
+{
+    "items": [
+      {
+        "id": "p-2024-informs-greenberg",
+        "year": 2024,
+        "title": "Example publication title (replace with real entry)",
+        "authors": "Selva Nadarajah, Coauthor One, Coauthor Two",
+        "venue": "Journal / Conference (replace)",
+        "links": [
+          { "label": "PDF", "url": "https://example.com" }
+        ],
+        "selected": true
+      }
+    ]
+  }
+  

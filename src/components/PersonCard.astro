@@ -1,0 +1,52 @@
+---
+type Link = { label: string; url: string };
+const { name, role, topic, next, institution, links } = Astro.props as {
+  name: string;
+  role?: string;
+  topic?: string;
+  next?: string;
+  institution?: string;
+  links?: Link[];
+};
+---
+
+<div class="card">
+  <div class="name">{name}</div>
+  <div class="meta">
+    {role ? <span>{role}</span> : null}
+    {institution ? <span class="sep">·</span> : null}
+    {institution ? <span>{institution}</span> : null}
+  </div>
+
+  {topic ? <div class="detail">Topic: {topic}</div> : null}
+  {next ? <div class="detail">Next: {next}</div> : null}
+
+  {links?.length ? (
+    <div class="links">
+      {links.map((l) => (
+        <a href={l.url} target="_blank" rel="noreferrer">{l.label}</a>
+      ))}
+    </div>
+  ) : null}
+</div>
+
+<style>
+.card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+}
+.name {
+  font-weight: 600;
+}
+.meta, .detail {
+  color: var(--muted);
+}
+.sep {
+  margin: 0 0.35rem;
+}
+.links a {
+  margin-right: 0.75rem;
+  font-size: 0.95rem;
+}
+</style>

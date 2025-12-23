@@ -2,11 +2,33 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HeaderNav from "../components/HeaderNav.astro";
 import Footer from "../components/Footer.astro";
+import Section from "../components/Section.astro";
+import PublicationList from "../components/PublicationList.astro";
+import { getCollection } from "astro:content";
+
+const pubsEntries = await getCollection("publications");
+const pubsData = pubsEntries.flatMap((e) => (e.data as any).items);
 ---
 
-<BaseLayout title="Selva Nadarajah">
+<BaseLayout title="Research - Selva Nadarajah" description="Research areas and publications.">
   <HeaderNav slot="header" />
-  <h1>Selva Nadarajah</h1>
-  <p>Home page placeholder.</p>
+
+  <h1>Research</h1>
+
+  <Section title="Overview">
+    <p>
+      Replace this paragraph with the research overview content from the current site,
+      rewritten into 2 to 4 readable paragraphs.
+    </p>
+  </Section>
+
+  <Section title="Selected publications">
+    <PublicationList items={pubsData} selectedOnly={true} />
+  </Section>
+
+  <Section title="All publications">
+    <PublicationList items={pubsData} />
+  </Section>
+
   <Footer slot="footer" />
 </BaseLayout>

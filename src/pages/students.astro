@@ -2,11 +2,64 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HeaderNav from "../components/HeaderNav.astro";
 import Footer from "../components/Footer.astro";
+import Section from "../components/Section.astro";
+import PersonCard from "../components/PersonCard.astro";
+import { getCollection } from "astro:content";
+
+const entries = await getCollection("students");
+const data = entries[0]?.data as any;
+
+const prospectiveNote = data?.prospectiveNote ?? "";
+const current = data?.current ?? [];
+const alumni = data?.alumni ?? [];
 ---
 
-<BaseLayout title="Selva Nadarajah">
+<BaseLayout title="Students - Selva Nadarajah" description="Students and alumni.">
   <HeaderNav slot="header" />
-  <h1>Selva Nadarajah</h1>
-  <p>Home page placeholder.</p>
+  <h1>Students</h1>
+
+  {prospectiveNote ? (
+    <Section title="Prospective students">
+      <p>{prospectiveNote}</p>
+    </Section>
+  ) : null}
+
+  <Section title="Current">
+    {current.length === 0 ? (
+      <p>No entries yet.</p>
+    ) : (
+      <div class="grid">
+        {current.map((p: any) => (
+          <PersonCard {...p} />
+        ))}
+      </div>
+    )}
+  </Section>
+
+  <Section title="Alumni">
+    {alumni.length === 0 ? (
+      <p>No entries yet.</p>
+    ) : (
+      <div class="grid">
+        {alumni.map((p: any) => (
+          <PersonCard {...p} />
+        ))}
+      </div>
+    )}
+  </Section>
+
   <Footer slot="footer" />
 </BaseLayout>
+
+<style>
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
+}
+@media (min-width: 800px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+</style>

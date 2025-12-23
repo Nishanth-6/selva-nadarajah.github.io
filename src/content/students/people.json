@@ -1,0 +1,21 @@
+{
+    "prospectiveNote": "Replace this with the prospective students note from students.html.",
+    "current": [
+      {
+        "name": "Student Name (replace)",
+        "role": "PhD / MS / UG (replace)",
+        "topic": "Topic (optional)",
+        "institution": "Institution (optional)",
+        "links": [{ "label": "Website", "url": "https://example.com" }]
+      }
+    ],
+    "alumni": [
+      {
+        "name": "Alumni Name (replace)",
+        "role": "Former role (optional)",
+        "next": "Next position (optional)",
+        "institution": "Institution (optional)"
+      }
+    ]
+  }
+  
