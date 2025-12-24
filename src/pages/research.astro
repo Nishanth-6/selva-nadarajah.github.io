@@ -4,22 +4,22 @@ import HeaderNav from "../components/HeaderNav.astro";
 import Footer from "../components/Footer.astro";
 import Section from "../components/Section.astro";
 import PublicationList from "../components/PublicationList.astro";
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
+
+const page = await getEntry("pages", "research");
+if (!page) throw new Error("Missing content entry: pages/research.md");
+const { Content } = await page.render();
 
 const pubsEntries = await getCollection("publications");
 const pubsData = pubsEntries.flatMap((e) => (e.data as any).items);
 ---
 
-<BaseLayout title="Research - Selva Nadarajah" description="Research areas and publications.">
+<BaseLayout title={`${page.data.title} - Selva Nadarajah`} description={page.data.description ?? ""}>
   <HeaderNav slot="header" />
-
-  <h1>Research</h1>
+  <h1>{page.data.title}</h1>
 
   <Section title="Overview">
-    <p>
-      Replace this paragraph with the research overview content from the current site,
-      rewritten into 2 to 4 readable paragraphs.
-    </p>
+    <Content />
   </Section>
 
   <Section title="Selected publications">

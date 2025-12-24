@@ -4,25 +4,26 @@ import HeaderNav from "../components/HeaderNav.astro";
 import Footer from "../components/Footer.astro";
 import Section from "../components/Section.astro";
 import PersonCard from "../components/PersonCard.astro";
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
+
+const page = await getEntry("pages", "students");
+if (!page) throw new Error("Missing content entry: pages/students.md");
+const { Content } = await page.render();
 
 const entries = await getCollection("students");
 const data = entries[0]?.data as any;
 
-const prospectiveNote = data?.prospectiveNote ?? "";
 const current = data?.current ?? [];
 const alumni = data?.alumni ?? [];
 ---
 
-<BaseLayout title="Students - Selva Nadarajah" description="Students and alumni.">
+<BaseLayout title={`${page.data.title} - Selva Nadarajah`} description={page.data.description ?? ""}>
   <HeaderNav slot="header" />
-  <h1>Students</h1>
+  <h1>{page.data.title}</h1>
 
-  {prospectiveNote ? (
-    <Section title="Prospective students">
-      <p>{prospectiveNote}</p>
-    </Section>
-  ) : null}
+  <Section title="Overview">
+    <Content />
+  </Section>
 
   <Section title="Current">
     {current.length === 0 ? (

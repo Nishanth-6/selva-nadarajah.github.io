@@ -4,16 +4,24 @@ import HeaderNav from "../components/HeaderNav.astro";
 import Footer from "../components/Footer.astro";
 import Section from "../components/Section.astro";
 import Card from "../components/Card.astro";
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
+
+const page = await getEntry("pages", "teaching");
+if (!page) throw new Error("Missing content entry: pages/teaching.md");
+const { Content } = await page.render();
 
 const entries = await getCollection("teaching");
 const data = entries[0]?.data as any;
 const terms = data?.terms ?? [];
 ---
 
-<BaseLayout title="Teaching - Selva Nadarajah" description="Teaching and courses.">
+<BaseLayout title={`${page.data.title} - Selva Nadarajah`} description={page.data.description ?? ""}>
   <HeaderNav slot="header" />
-  <h1>Teaching</h1>
+  <h1>{page.data.title}</h1>
+
+  <Section title="Overview">
+    <Content />
+  </Section>
 
   {terms.length === 0 ? (
     <p>No teaching data yet.</p>

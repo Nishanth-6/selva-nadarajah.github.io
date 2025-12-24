@@ -105,9 +105,18 @@ const awards = defineCollection({
   }),
 });
 
+const pages = defineCollection({
+    type: "content",
+    schema: z.object({
+      title: z.string().min(1),
+      description: z.string().optional(),
+    }),
+  });  
+
 export const collections = {
   publications,
   teaching,
   students,
   awards,
+  pages,
 };
