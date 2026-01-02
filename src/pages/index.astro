@@ -2,92 +2,126 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HeaderNav from "../components/HeaderNav.astro";
 import Footer from "../components/Footer.astro";
-import Section from "../components/Section.astro";
-import Card from "../components/Card.astro";
 import { Image } from "astro:assets";
+
 import profile from "../assets/profile.jpg";
+import uicBanner from "../assets/UIC image banner.jpeg";
 ---
 
-<BaseLayout title="Selva Nadarajah" description="Academic homepage.">
+<BaseLayout
+  title="Selvaprabu (Selva) Nadarajah"
+  description="Academic homepage of Selvaprabu (Selva) Nadarajah, University of Illinois Chicago."
+>
   <HeaderNav slot="header" />
 
-  <div class="hero">
-    <div>
-      <h1>Selva Nadarajah</h1>
-      <p class="subtitle">Associate Professor (placeholder title)</p>
-      <p class="meta">
-        <span>University (placeholder)</span>
-        <span class="sep">·</span>
-        <a href="mailto:replace@university.edu">replace@university.edu</a>
+  <main class="max-w-4xl mx-auto px-6 md:px-8 py-8 md:py-10">
+    <!-- Banner -->
+    <div class="mb-8 rounded-lg overflow-hidden shadow-sm">
+      <div class="h-28 md:h-32">
+        <Image
+          src={uicBanner}
+          alt="University of Illinois Chicago skyline"
+          class="w-full h-full object-cover"
+          width={1400}
+        />
+      </div>
+    </div>
+
+    <!-- Name & Affiliations -->
+    <div class="mb-10">
+      <h1 class="text-3xl md:text-4xl mb-3 leading-tight">
+        <span class="font-normal text-slate-600">Selvaprabu (Selva) </span>
+        <span class="font-bold text-slate-900">Nadarajah</span>
+      </h1>
+
+      <p class="text-sm md:text-base text-slate-700 max-w-[70ch] leading-relaxed">
+        <span class="font-medium text-slate-900">Affiliations:</span> Department of Information and Decision Sciences, College of Business Administration, University of Illinois Chicago; Decision Intelligence R&D Lead at the Discovery Partners Institute (innovation hub of the University of Illinois System); and research collaborator with Argonne National Laboratory.
       </p>
     </div>
 
-    <div class="photo">
-      <Image src={profile} alt="Portrait of Selva Nadarajah" width={320} />
+    <!-- Two-column layout -->
+    <div class="flex flex-col md:flex-row gap-8">
+      <!-- Left: Main content -->
+      <div class="flex-1">
+        <!-- About intro -->
+        <div class="space-y-4 text-slate-700 leading-relaxed max-w-[70ch] mb-10">
+          <p>
+            I am an Associate Professor (with tenure) of Information and Decision Sciences and Bielinski Family Endowed Scholar at the College of Business Administration, University of Illinois Chicago. I also serve as the Decision Intelligence R&D Lead at the Discovery Partners Institute (innovation hub of the University of Illinois System), and work with Argonne National Laboratory. My research areas include (see the <a href="/research" class="text-blue-600 hover:underline font-medium">Research page</a> for more details):
+          </p>
+        </div>
+
+        <!-- Research areas text -->
+        <div class="space-y-4 text-slate-700 leading-relaxed max-w-[70ch] mb-8">
+          <div>
+            <h3 class="text-base font-semibold text-slate-900 mb-2">Self-adapting Approximations</h3>
+            <p>The solution of large scale Markov decision processes using algorithms that improve accessibility to non-technical domain experts and resource-constrained organizations by automating learning from data, underlying problem structure, and instance difficulty.</p>
+          </div>
+
+          <div>
+            <h3 class="text-base font-semibold text-slate-900 mb-2">Energy Real Options</h3>
+            <p>The operations, valuation, and risk management of commodity and energy conversion assets (e.g., production, storage, transport), including renewable energy.</p>
+          </div>
+
+          <div>
+            <h3 class="text-base font-semibold text-slate-900 mb-2">Energy and Computing Nexus</h3>
+            <p>The exploration of how energy demands intensified by computing growth (e.g., data centers) can be met, and how computing advances (e.g., LLMs) can accelerate the sustainable energy transformation.</p>
+          </div>
+        </div>
+
+        <!-- Awards -->
+        <div class="space-y-4 text-slate-700 leading-relaxed max-w-[70ch] mb-8">
+          <p>
+            I have been fortunate to be recognized as a Global Scholar for international research, scholarship, and creative activity by the University of Illinois Chicago in 2024, and receive the 2024 INFORMS Harvey J. Greenberg Research Award, the 2021 Commodity and Energy Markets Association (CEMA) Best Paper Award, the 2020 INFORMS ENRE Young Researcher Prize, the Best Overall Paper at the 2020 NeurIPS Workshop on Tackling Climate Change with Machine Learning, the 2014 William L. Cooper Dissertation Award, and the 2013 Egon Balas Best Paper Award.
+          </p>
+        </div>
+
+        <!-- Note to Collaborators -->
+        <div class="space-y-4 text-slate-700 leading-relaxed max-w-[70ch] mb-8">
+          <div>
+            <h3 class="text-base font-semibold text-slate-900 mb-2">Note to Collaborators</h3>
+            <p>I welcome collaborations from both academia and industry. Feel free to email me. If you are a graduate student (Masters or PhD) interested in working with me, please read <a href="/students" class="text-blue-600 hover:underline font-medium">this link</a> before sending an email.</p>
+          </div>
+        </div>
+
+        <!-- About me -->
+        <div class="space-y-4 text-slate-700 leading-relaxed max-w-[70ch]">
+          <div>
+            <h3 class="text-base font-semibold text-slate-900 mb-2">About me</h3>
+            <p>
+              Before joining UIC, I did my PhD and MS in Operations Research at the Tepper School of Business, <a href="https://www.cmu.edu/" class="text-blue-600 hover:underline">Carnegie Mellon University</a>. My journey to North America started at the <a href="https://uwaterloo.ca/" class="text-blue-600 hover:underline">University of Waterloo</a>, where I obtained an MASc in Operations Research and learnt the importance of asking <a href="https://selvan.people.uic.edu/UWWhyNot.jpg" class="text-blue-600 hover:underline">"Why Not?"</a>.
+            </p>
+
+            <p class="pt-2">
+              I was born in <a href="https://www.incredibleindia.org/" class="text-blue-600 hover:underline">incredible India</a> and grew up in the beautiful island of <a href="https://www.srilanka.travel/" class="text-blue-600 hover:underline">Sri Lanka</a> (a.k.a. the pearl of the Indian ocean) before heading back to Chennai for my undergraduate studies at the <a href="https://www.iitm.ac.in/" class="text-blue-600 hover:underline">Indian Institute of Technology Madras</a>. I have enjoyed consulting with companies in the retail, high technology, and energy industries along the way.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Profile card, sticky -->
+      <aside class="w-full md:w-72 md:sticky md:top-24 flex-shrink-0">
+        <div class="bg-slate-50 rounded-lg p-5 border border-slate-200">
+          <Image
+            src={profile}
+            alt="Selvaprabu (Selva) Nadarajah"
+            class="w-full rounded-md mb-4"
+            width={400}
+          />
+
+          <div class="space-y-2 text-sm">
+            <div>
+              <p class="text-slate-700">
+                <strong>Email:</strong><br />
+                <a href="mailto:selvan@uic.edu" class="text-blue-600 hover:underline break-all">
+                  selvan@uic.edu
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </aside>
     </div>
-  </div>
-
-  <Section title="About">
-    <p>
-      Replace this with the Home page copy from the existing site, rewritten into 1 to 3 short paragraphs.
-    </p>
-  </Section>
-
-  <Section title="Research areas">
-    <div class="grid">
-      <Card title="Self-adapting approximations">
-        <p>Replace with 1 to 2 sentences from the existing site.</p>
-      </Card>
-      <Card title="Energy real options">
-        <p>Replace with 1 to 2 sentences from the existing site.</p>
-      </Card>
-      <Card title="Energy and computing nexus">
-        <p>Replace with 1 to 2 sentences from the existing site.</p>
-      </Card>
-    </div>
-  </Section>
-
-  <Section title="Awards and recognition">
-    <ul>
-      <li>Replace with award entries from the current site (year + award name).</li>
-    </ul>
-  </Section>
+  </main>
 
   <Footer slot="footer" />
 </BaseLayout>
-
-<style>
-.hero {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  align-items: center;
-  margin-top: 1rem;
-}
-.subtitle {
-  margin-top: 0.25rem;
-  font-size: 1.05rem;
-  color: var(--muted);
-}
-.meta {
-  color: var(--muted);
-}
-.sep { margin: 0 0.35rem; }
-.photo :global(img) {
-  border-radius: 16px;
-  border: 1px solid var(--border);
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: 1rem;
-}
-@media (min-width: 900px) {
-  .hero {
-    grid-template-columns: 1.2fr 0.8fr;
-  }
-  .grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-</style>
